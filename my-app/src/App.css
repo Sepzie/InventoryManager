@@ -36,20 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-.vehicle-card {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px;
-  max-width: 200px;
-}
-
-
-.vehicle-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
