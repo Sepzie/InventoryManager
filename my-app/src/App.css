@@ -36,3 +36,181 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.vehicle-card {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  max-width: 200px;
+  background-color: #f9f9f9;
+}
+
+.vehicle-card h3 {
+  margin-top: 0;
+}
+
+.vehicle-card p {
+  margin-bottom: 8px;
+}
+
+.vehicle-card button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.vehicle-card button:hover {
+  background-color: #45a049;
+}
+
+
+
+.vehicle-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+/* Details Page CSS */
+
+.details{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 30px 0;
+  box-shadow: 0 0 10px #ccc;
+  max-width: 1200px;
+  width: 100%;
+  margin: 100px auto;
+}
+.details .big-img{
+  max-width: 500px;
+  min-width: 290px;
+  overflow: hidden;
+  margin: 25px;
+}
+.big-img img{
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  display: block;
+  object-fit: cover;
+}
+
+.details .box{
+  max-width: 500px;
+  min-width: 290px;
+  margin: 25px;
+}
+.box .row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.box .row h2{
+  text-transform: uppercase;
+}
+
+.box .cart{
+  background: #333;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin-top: 15px;
+}
+
+@media (max-width: 500px){
+  .image {
+    width: 100%;
+    height: 40vh;
+    border-radius: 10px;
+  }
+}
+
+.info-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.title {
+  text-align: left;
+  margin-right: 10px;
+}
+
+.info {
+  text-align: right;
+}
+
+
+
+/* Slider CSS */
+
+@media (min-width: 500px){
+  .image {
+    width: 100%;
+    height: 40vh;
+    border-radius: 10px;
+  }
+}
+
+.slider {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 40vw;
+  height: 60vh;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 70%;
+  right: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 70%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}

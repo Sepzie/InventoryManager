@@ -1,23 +1,76 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import mockVehicles from './MockVehicles';
+import 'react-slideshow-image/dist/styles.css'
+import ImageSlider from './ImageSlider';
+
+function VehicleCard({ vehicle, setSelectedVehicle }) {
+  return (
+    <div className="vehicle-card">
+      <h3>{vehicle.make} {vehicle.model}</h3>
+      <p>Year: {vehicle.year}</p>
+      <p>Price: ${vehicle.price}</p>
+      <button onClick={() => setSelectedVehicle(vehicle)}>Select</button>
+    </div>
+  );
+}
+
+function VehicleList({ vehicles, setSelectedVehicle }) {
+  return (
+    <div className="vehicle-list">
+      {vehicles.map((vehicle, index) => (
+        <VehicleCard key={index} vehicle={vehicle} setSelectedVehicle={setSelectedVehicle} />
+      ))}
+    </div>
+  );
+}
+
+const InfoColumnRow = ({title, value}) => {
+    return (
+      <div className="info-row">
+        <p className="title"><strong>{title}:</strong></p>
+        <p className="info">{value}</p>
+      </div>
+    );
+}
+
+
+function VehicleDetails({ vehicle, unselectVehicle }) {
+  return (
+    <div className="details">
+        <ImageSlider slides={vehicle.images} />
+        <div className="box">
+        <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
+        <h4>${vehicle.price}</h4>
+        <div className="info-column">
+          <InfoColumnRow title="Body Style" value={vehicle.bodyStyle} />
+          <InfoColumnRow title="Engine" value={vehicle.engine} />
+          <InfoColumnRow title="Transmission" value={vehicle.transmission} />
+          <InfoColumnRow title="Drivetrain" value={vehicle.drivetrain} />
+          <InfoColumnRow title="Exterior" value={vehicle.exterior} />
+          <InfoColumnRow title="Kilometers" value={vehicle.kilometers} />
+          <InfoColumnRow title="Doors" value={vehicle.doors} />
+          <InfoColumnRow title="Stock #" value={vehicle.stock} />
+          <InfoColumnRow title="VIN #" value={vehicle.vin} />
+          <InfoColumnRow title="Fuel Type" value={vehicle.fuelType} />
+          <InfoColumnRow title="Condition" value={vehicle.condition} />
+        </div>
+        <button onClick={unselectVehicle}>Back</button>
+      </div>
+    </div>
+  );
+}
+
+
+
 
 function App() {
+  var [selectedVehicle, setSelectedVehicle] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {selectedVehicle && <VehicleDetails vehicle={selectedVehicle} unselectVehicle={() => setSelectedVehicle(null)} />}
+      {!selectedVehicle && <VehicleList vehicles={mockVehicles} setSelectedVehicle={setSelectedVehicle} />}
     </div>
   );
 }
