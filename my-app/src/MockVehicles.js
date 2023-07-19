@@ -1,4 +1,3 @@
-
 const mockVehicles = [
   {
     make: 'Ford',
@@ -16,7 +15,8 @@ const mockVehicles = [
     vin: '1HGCM82633A123456',
     fuelType: 'Gasoline',
     condition: 'Excellent',
-    images: 'https://example.com/ford-mustang.jpg'
+    images: 'https://example.com/ford-mustang.jpg',
+    description: 'The Ford Mustang is a legendary American muscle car known for its powerful performance and iconic design.'
   },
   {
     make: 'Chevrolet',
@@ -34,7 +34,8 @@ const mockVehicles = [
     vin: '1C6RR7MT4ES123456',
     fuelType: 'Gasoline',
     condition: 'Good',
-    images: 'https://example.com/chevrolet-camaro.jpg'
+    images: 'https://example.com/chevrolet-camaro.jpg',
+    description: 'The Chevrolet Camaro is a sleek and sporty coupe that offers a thrilling driving experience and eye-catching style.'
   },
   {
     make: 'Dodge',
@@ -52,7 +53,8 @@ const mockVehicles = [
     vin: '2G1FD1ED5E92654321',
     fuelType: 'Gasoline',
     condition: 'Very Good',
-    images: 'https://example.com/dodge-charger.jpg'
+    images: 'https://example.com/dodge-charger.jpg',
+    description: 'The Dodge Charger is a powerful and spacious sedan with aggressive styling and a comfortable interior.'
   },
   {
     make: 'Tesla',
@@ -70,7 +72,8 @@ const mockVehicles = [
     vin: '5YJSA1E45FF123456',
     fuelType: 'Electric',
     condition: 'Like New',
-    images: 'https://example.com/tesla-model-s.jpg'
+    images: 'https://example.com/tesla-model-s.jpg',
+    description: 'The Tesla Model S is a luxury electric sedan known for its impressive range, cutting-edge technology, and smooth acceleration.'
   },
   {
     make: 'Honda',
@@ -88,9 +91,12 @@ const mockVehicles = [
     vin: 'JHMFA3F26DS123456',
     fuelType: 'Gasoline',
     condition: 'Good',
-    images: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvpj64pG1bOvLsh3tfCC_n2Urj7q7aHPr-W7lrIk51&s',
-    'https://blogmedia.dealerfire.com/wp-content/uploads/sites/818/2018/06/2018-Honda-Civic-Sedan-in-Lunar-SIlver-Metallic_o.jpg',
-    'https://images.cars.com/cldstatic/wp-content/uploads/honda-civic-hatchback-2021-OEM-exterior--silver.jpg']
+    images: [
+      'https://blogmedia.dealerfire.com/wp-content/uploads/sites/818/2018/06/2018-Honda-Civic-Sedan-in-Lunar-SIlver-Metallic_o.jpg',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvpj64pG1bOvLsh3tfCC_n2Urj7q7aHPr-W7lrIk51&s',
+      'https://images.cars.com/cldstatic/wp-content/uploads/honda-civic-hatchback-2021-OEM-exterior--silver.jpg'
+    ],
+    description: 'The Honda Civic is a reliable and fuel-efficient sedan that offers a comfortable ride and modern features.'
   },
 ];
 
