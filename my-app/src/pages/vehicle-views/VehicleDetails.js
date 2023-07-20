@@ -1,39 +1,9 @@
-import "./InventoryManager.css"
 import ImageSlider from './ImageSlider';
-import FinancingCalculator from './FinancingCalculator';
-import mockVehicles from './MockVehicles';
-import 'react-slideshow-image/dist/styles.css'
-import { useState } from 'react';
+import FinancingCalculator from '../inventory-manager/FinancingCalculator';
+import './VehicleDetails.css';
 
 
-function VehicleCard({ vehicle, setSelectedVehicle }) {
-  return (
-    <div className="vehicle-card">
-      <h3>{vehicle.make} {vehicle.model}</h3>
-      <p>Year: {vehicle.year}</p>
-      <p>Price: ${vehicle.price}</p>
-      <button onClick={() => setSelectedVehicle(vehicle)}>Select</button>
-    </div>
-  );
-}
-function VehicleList({ vehicles, setSelectedVehicle }) {
-  return (
-    <div className="vehicle-list">
-      {vehicles.map((vehicle, index) => (
-        <VehicleCard key={index} vehicle={vehicle} setSelectedVehicle={setSelectedVehicle} />
-      ))}
-    </div>
-  );
-}
-const InfoColumnRow = ({ title, value }) => {
-  return (
-    <div className="info-row">
-      <p className="info-title"><strong>{title}:</strong></p>
-      <p className="info">{value}</p>
-    </div>
-  );
-};
-export function VehicleDetails({ vehicle, unselectVehicle }) {
+function VehicleDetails({ vehicle, unselectVehicle }) {
   return (
     <div className="details">
       <div className="details-title">
@@ -73,19 +43,14 @@ export function VehicleDetails({ vehicle, unselectVehicle }) {
     </div>
   );
 }
-
-
-
-function InventoryManager() {
-  var [selectedVehicle, setSelectedVehicle] = useState(null);
-
+const InfoColumnRow = ({ title, value }) => {
   return (
-    <div className="inventory-manager">
-      {selectedVehicle && <VehicleDetails vehicle={selectedVehicle} unselectVehicle={() => setSelectedVehicle(null)} />}
-      {!selectedVehicle && <VehicleList vehicles={mockVehicles} setSelectedVehicle={setSelectedVehicle} />}
+    <div className="info-row">
+      <p className="info-title"><strong>{title}:</strong></p>
+      <p className="info">{value}</p>
     </div>
   );
-}
+};
 
 
-export default InventoryManager;
+export default VehicleDetails;

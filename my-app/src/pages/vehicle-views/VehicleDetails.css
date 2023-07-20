@@ -1,0 +1,103 @@
+
+  /* Details Page CSS */
+  
+  .details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 2fr));
+    grid-gap: 25px;
+    box-shadow: 0 0 10px #ccc;
+    max-width: 1200px;
+    width: 100%;
+    margin: 100px auto;
+  }
+  
+  .box {
+    max-width: 90%;
+  }
+  
+  .details-description > *{
+    text-align: left;
+    margin-left: 35px
+  }
+  
+  .details-description{
+    margin-top: 20px;
+  }
+  
+  .box h4{
+    margin-top: -20px;
+  }
+  
+  .info-column {
+    display: grid;
+    grid-template-columns: 1 1fr;
+  }
+  
+  .box .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+  }
+  
+  .title {
+    text-align: left;
+    margin-right: 10px;
+  }
+  
+  .details-title{
+    margin-top: 4vh;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 400;
+  }
+  
+  .info {
+    text-align: right;
+  }
+
+  
+  /* Media 610 px and less */
+  
+  @media (max-width: 610px){
+    .details {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(20px, 1fr));
+      box-shadow: 0 0 10px #ccc;
+      max-width: 1200px;
+      width: 80%;
+      margin: 20px auto;
+    }
+  
+    .box {
+      max-width: 90%;
+      margin-left: 1em
+    }
+  
+    .details-title{
+      margin-top: 2vh;
+    }
+    
+    .details-price{
+      margin-top: -6vh;
+    }
+  
+    .info-row > *{
+      font-size: 13px;
+    }
+  
+    .details-description > *{
+      font-size: 13px;
+      margin-right: 10px
+    }
+  
+    .details-back-button {
+      grid-column: span 1
+    }
+  
+  }
