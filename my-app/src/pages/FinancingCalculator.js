@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './css/Calculator.css'
+import '../css/Calculator.css'
 
 const FinancingCalculator = (price) => {
   const [vehicleCost, setVehicleCost] = useState(price.price);
