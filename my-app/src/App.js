@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css'
 import { useState } from 'react';
 import mockVehicles from './MockVehicles';
 import 'react-slideshow-image/dist/styles.css'
@@ -29,7 +29,7 @@ function VehicleList({ vehicles, setSelectedVehicle }) {
 const InfoColumnRow = ({title, value}) => {
     return (
       <div className="info-row">
-        <p className="title"><strong>{title}:</strong></p>
+        <p className="info-title"><strong>{title}:</strong></p>
         <p className="info">{value}</p>
       </div>
     );
@@ -39,12 +39,16 @@ const InfoColumnRow = ({title, value}) => {
 function VehicleDetails({ vehicle, unselectVehicle }) {
   return (
     <div className="details">
+        <div className="details-title"> 
+          <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
+        </div>
+        <div className="details-title">
+          <h2>${vehicle.price}</h2>
+        </div>
         <div className="image-slider">
-          <ImageSlider slides={vehicle.images} />
+          <ImageSlider slides={vehicle.images}/>
         </div>
         <div className="box">
-          <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
-          <h4>${vehicle.price}</h4>
           <div className="info-column">
             <InfoColumnRow title="Body Style" value={vehicle.bodyStyle} />
             <InfoColumnRow title="Engine" value={vehicle.engine} />
@@ -60,14 +64,14 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
           </div>
       </div>
       <div className="details-description">
-        <h3>Description</h3>
+        <h3>Details</h3>
         <p>{vehicle.description}</p>
       </div>
       <div className="financing-calculator-section">
         <FinancingCalculator price={vehicle.price} />
       </div>
       <div className="details-back-button">
-            <button onClick={unselectVehicle} >Back</button>
+      <button onClick={unselectVehicle} >Back to Vehicle List</button>
       </div>
     </div>
   );

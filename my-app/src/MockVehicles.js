@@ -96,7 +96,7 @@ const mockVehicles = [
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvpj64pG1bOvLsh3tfCC_n2Urj7q7aHPr-W7lrIk51&s',
       'https://images.cars.com/cldstatic/wp-content/uploads/honda-civic-hatchback-2021-OEM-exterior--silver.jpg'
     ],
-    description: 'The Honda Civic is a reliable and fuel-efficient sedan that offers a comfortable ride and modern features.'
+    description: "The Honda Civic is a reliable and fuel-efficient sedan that offers a comfortable ride and modern features. It's a great choice for a daily driver. "
   },
 ];
 

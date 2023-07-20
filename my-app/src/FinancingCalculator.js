@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import './css/Calculator.css'
 
 const FinancingCalculator = (price) => {
-  const [vehicleCost, setVehicleCost] = useState(price);
+  const [vehicleCost, setVehicleCost] = useState(price.price);
   const [downPayment, setDownPayment] = useState('');
   const [interestRate, setInterestRate] = useState(5);
   const [loanTerm, setLoanTerm] = useState('');
@@ -39,7 +40,7 @@ const FinancingCalculator = (price) => {
           id="vehicle-cost"
           value={vehicleCost}
           onChange={(e) => setVehicleCost(parseFloat(e.target.value))}
-          placeholder="Enter cost of vehicle"
+          placeholder={price.price}
           required
         />
 
@@ -96,6 +97,7 @@ const FinancingCalculator = (price) => {
           <p>Payment Amount: ${paymentAmount}</p>
         </div>
       )}
+
     </div>
   );
 }
