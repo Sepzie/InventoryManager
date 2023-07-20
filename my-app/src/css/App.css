@@ -216,10 +216,12 @@
     margin-left: 1em
   }
 
+
+
     .right-arrow {
     position: absolute;
-    top: 85%;
-    right: 20vw;
+    top: 75%;
+    right: 5vw;
     font-size: 2rem;
     color: #000;
     z-index: 10;
@@ -227,10 +229,20 @@
     user-select: none;
   }
 
+  .details-title{
+    margin-bottom: -10vh;
+  }
+
+  .image {
+    width: 90%;
+    height: 40vh;
+    border-radius: 10px;
+  }
+
   .left-arrow {
     position: absolute;
-    top: 85%;
-    left: 20vw;
+    top: 75%;
+    right: 10px;
     font-size: 2rem;
     color: #000;
     z-index: 10;
@@ -247,11 +259,11 @@
   }
 
   .info-row > *{
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .details-description > *{
-    font-size: 13px;
+    font-size: 15px;
     margin-right: 10px
   }
 
