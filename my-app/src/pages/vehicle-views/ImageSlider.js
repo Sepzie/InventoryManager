@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import './ImageSlider.css';
 
 // Slider responsible for the images of the vehicle on the details page
 

@@ -1,0 +1,39 @@
+
+.vehicle-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 200px;
+    background-color: #f9f9f9;
+  }
+  
+  .vehicle-card h3 {
+    margin-top: 0;
+  }
+  
+  .vehicle-card p {
+    margin-bottom: 8px;
+  }
+  
+  .vehicle-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .vehicle-card button:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  .vehicle-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  

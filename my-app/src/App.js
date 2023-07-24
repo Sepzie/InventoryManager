@@ -1,17 +1,20 @@
 import './css/App.css'
 import { useState } from 'react';
-import mockVehicles from './MockVehicles';
-import 'react-slideshow-image/dist/styles.css'
-import { VehicleDetails, VehicleList } from './VehicleDetails';
+import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import InventoryManager from './pages/inventory-manager/InventoryManager';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 function App() {
   var [selectedVehicle, setSelectedVehicle] = useState(null);
 
   return (
-    <div className="App">
-      {selectedVehicle && <VehicleDetails vehicle={selectedVehicle} unselectVehicle={() => setSelectedVehicle(null)} />}
-      {!selectedVehicle && <VehicleList vehicles={mockVehicles} setSelectedVehicle={setSelectedVehicle} />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<InventoryManager />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
