@@ -8,12 +8,13 @@ import { useEffect, useState } from 'react';
 import VehicleList from '../vehicle-views/VehicleList';
 import InventoryManager from '../inventory-manager/InventoryManager';
 import { db } from '../../firebase';
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 
 function AdminDashboard() {
     const [user, setUser] = useState(null);
     const [showVehicleForm, setShowVehicleForm] = useState(false);
     const [editVehicle, setEditVehicle] = useState(null);
+    const [inventoryKey, setInventoryKey] = useState(0);
 
     const auth = getAuth();
 
@@ -39,8 +40,17 @@ function AdminDashboard() {
         setShowVehicleForm(true);
     }
 
-    const onDelete = (vehicle) => {
-
+    const onDelete = async (vehicle) => {
+        const confirmDelete = window.confirm(`Are you sure you want to delete ${vehicle.name}?`);
+        if (confirmDelete) {
+            try {
+                await deleteDoc(doc(db, 'vehicles', vehicle.id));
+                alert('Vehicle deleted!');
+                setInventoryKey(prevKey => prevKey + 1);
+            } catch (error) {
+                alert('Failed to delete vehicle: ', error.message);
+            }
+        }
     }
 
     const onComplete = async (vehicle) => {
@@ -68,7 +78,7 @@ function AdminDashboard() {
             ) : (
                 <>
                     <button onClick={onAdd}>Add Vehicle</button>
-                    <InventoryManager admin onEdit={onEdit} onDelete={onDelete} />
+                    <InventoryManager key={inventoryKey} admin onEdit={onEdit} onDelete={onDelete} />
                 </>
             )}
         </div>
