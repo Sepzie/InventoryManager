@@ -4,62 +4,180 @@
   .details {
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 2fr));
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  /* Details Header CSS */
+
+  .title-box {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(60px, 1fr));
     grid-gap: 25px;
     box-shadow: 0 0 10px #ccc;
-    max-width: 1200px;
-    width: 100%;
-    margin: 100px auto;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    grid-column: span 2;
+    border-radius: 10px
   }
-  
-  .box {
-    max-width: 90%;
+
+
+  .vehicle-title{
+    grid-column: span 5;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-weight: 600;
+    margin-top: 30px;
   }
-  
-  .details-description > *{
+
+  .vehicle-cost{
+    grid-column: span 2;
+    margin: 10px;
+  }
+
+  .vehicle-cost > *{
     text-align: left;
-    margin-left: 35px
   }
-  
-  .details-description{
-    margin-top: 20px;
-  }
-  
-  .box h4{
+
+  .vehicle-cost > p{
     margin-top: -20px;
+    font-size: 12px;
+    color: gray;
+    font-weight: 600;
   }
-  
-  .info-column {
+
+  .back-button{
+      grid-column: 1/2;
+      width: 60px;
+      margin-left: 20px;
+      margin-top: 10px;
+  }
+
+/* Slideshow with Specs CSS */
+
+  .image-specs-box{
     display: grid;
-    grid-template-columns: 1 1fr;
+    grid-template-columns: repeat(2, minmax(60px, 1fr));
+    grid-column: span 2;
+    box-shadow: 0 0 10px #ccc;
+    margin: auto;
+    width: 90%;
+    margin-top: 30px;
+    border-radius: 10px
   }
-  
-  .box .row {
-    display: flex;
-    justify-content: space-between;
+
+  .horizantal-line-specs{
+    border-top: 1px solid #ccc;
+    width: 97%;
+    margin-left: 0%;
   }
-  
-  
+
   .info-row {
     display: flex;
     justify-content: space-between;
     height: 30px;
+    margin-top: -10px
   }
-  
-  .title {
+
+  .specs-title{
     text-align: left;
-    margin-right: 10px;
+    color: gray;
+    font-size: 15px;
   }
-  
-  .details-title{
-    margin-top: 4vh;
-    font-family: 'Roboto', sans-serif;
-    color: black;
-    font-weight: 400;
-  }
-  
-  .info {
+
+  .info-value{
     text-align: right;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-right: 20px;
   }
+
+  .info-title{
+    font-size: 15px;
+  }
+
+
+  /* Description CSS */
+  
+  .details-description-box > *{
+    text-align: left;
+    margin-left: 35px;
+    margin-right: 20px;
+  }
+
+  .details-description-box > h3{
+    margin-top: 20px;
+    color: gray;
+    font-weight: 100;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .details-description-box{
+    grid-column: span 1;
+    box-shadow: 0 0 10px #ccc;
+    margin: auto;
+    width: 90%;
+    margin-top: 30px;
+    margin-left: 10%;
+    border-radius: 10px
+  }
+
+  /* Request info box */
+
+  
+  .request-info-box{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(60px, 1fr));
+    grid-column: span 1;
+    box-shadow: 0 0 10px #ccc;
+    margin: auto;
+    width: 85%;
+    margin-top: 30px;
+    margin-right: 10%;
+    border-radius: 10px
+  }
+
+  .request-info-box > *{
+    text-align: left;
+    margin: 10px
+  }
+
+  .request-info-button{
+    grid-column: span 2;
+    width: 200px;
+    justify-self: center;
+    margin-bottom: 15px;
+    justify-items: center;
+    text-align: center;
+    background-color: rgba(0, 255, 255, 0.423);
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .input-details{
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-top: -10px;
+    transition: border-color 0.3s ease-in-out;
+    max-width: 300px;
+    width: 80%;
+  }
+
+  .input-details:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
 
   
   /* Media 610 px and less */
