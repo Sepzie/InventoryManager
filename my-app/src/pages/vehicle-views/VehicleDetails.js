@@ -13,7 +13,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
         <h2>${vehicle.price}</h2>
       </div>
       <div className="image-slider">
-        <ImageSlider slides={vehicle.images} />
+        {/* <ImageSlider slides={vehicle.images} /> */}
       </div>
       <div className="box">
         <div className="info-column">

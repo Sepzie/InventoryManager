@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { db } from '../../firebase';
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
@@ -34,8 +34,8 @@ const AutoFillButton = styled.button`
   flex-basis: 100px;
 `;
 
-const AddCarForm = () => {
-    const [car, setCar] = useState({
+const VehicleInfoForm = ({ editVehicle, onComplete }) => {
+    const [vehicle, setVehicle] = useState({
         bodyStyle: '',
         engine: '',
         transmission: '',
@@ -49,43 +49,35 @@ const AddCarForm = () => {
         condition: '',
     });
 
+    const pageTitle = editVehicle ? 'Edit Vehicle' : 'Add Vehicle';
+    const buttonText = editVehicle ? 'Update Vehicle' : 'Add Vehicle';
+
+    useEffect(() => {
+        if (editVehicle) {
+            setVehicle(editVehicle);
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await addDoc(collection(db, 'cars'), car);
-            alert('Car added!');
-            setCar({
-                bodyStyle: '',
-                engine: '',
-                transmission: '',
-                drivetrain: '',
-                exterior: '',
-                kilometers: '',
-                doors: '',
-                stock: '',
-                vin: '',
-                fuelType: '',
-                condition: '',
-            });
-        } catch (error) {
-            alert(error.message);
-        }
+        // console.log(onComplete);
+        onComplete(vehicle);
     };
 
     const handleChange = (e) => {
-        setCar({ ...car, [e.target.name]: e.target.value });
+        setVehicle({ ...vehicle, [e.target.name]: e.target.value });
     };
 
     const handleAutoFill = async () => {
         try {
-            const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${car.vin}?format=json`);
+            const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${vehicle.vin}?format=json`);
             const data = await response.json();
 
             if (data.Results && data.Results.length > 0) {
                 const result = data.Results[0];
                 console.log(result)
-                setCar(prevCar => ({
-                    ...prevCar,
+                setVehicle(prevVehicle => ({
+                    ...prevVehicle,
                     bodyStyle: result.BodyClass,
                     engine: result.EngineCylinders,
                     transmission: result.TransmissionStyle,
@@ -104,55 +96,56 @@ const AddCarForm = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
+            <h2>{pageTitle}</h2>
             <InputGroup>
                 <Label>VIN:</Label>
-                <Input name="vin" value={car.vin} onChange={handleChange} placeholder="VIN" />
+                <Input name="vin" value={vehicle.vin} onChange={handleChange} placeholder="VIN" />
                 <AutoFillButton type="button" onClick={handleAutoFill}>Auto-fill</AutoFillButton>
             </InputGroup>
             <InputGroup>
                 <Label>Body Style:</Label>
-                <Input name="bodyStyle" value={car.bodyStyle} onChange={handleChange} placeholder="Body Style" />
+                <Input name="bodyStyle" value={vehicle.bodyStyle} onChange={handleChange} placeholder="Body Style" />
             </InputGroup>
             <InputGroup>
                 <Label>Engine:</Label>
-                <Input name="engine" value={car.engine} onChange={handleChange} placeholder="Engine" />
+                <Input name="engine" value={vehicle.engine} onChange={handleChange} placeholder="Engine" />
             </InputGroup>
             <InputGroup>
                 <Label>Transmission:</Label>
-                <Input name="transmission" value={car.transmission} onChange={handleChange} placeholder="Transmission" />
+                <Input name="transmission" value={vehicle.transmission} onChange={handleChange} placeholder="Transmission" />
             </InputGroup>
             <InputGroup>
                 <Label>Drivetrain:</Label>
-                <Input name="drivetrain" value={car.drivetrain} onChange={handleChange} placeholder="Drivetrain" />
+                <Input name="drivetrain" value={vehicle.drivetrain} onChange={handleChange} placeholder="Drivetrain" />
             </InputGroup>
             <InputGroup>
                 <Label>Exterior:</Label>
-                <Input name="exterior" value={car.exterior} onChange={handleChange} placeholder="Exterior" />
+                <Input name="exterior" value={vehicle.exterior} onChange={handleChange} placeholder="Exterior" />
             </InputGroup>
             <InputGroup>
                 <Label>Kilometers:</Label>
-                <Input name="kilometers" value={car.kilometers} onChange={handleChange} placeholder="Kilometers" />
+                <Input name="kilometers" value={vehicle.kilometers} onChange={handleChange} placeholder="Kilometers" />
             </InputGroup>
             <InputGroup>
                 <Label>Doors:</Label>
-                <Input name="doors" value={car.doors} onChange={handleChange} placeholder="Doors" />
+                <Input name="doors" value={vehicle.doors} onChange={handleChange} placeholder="Doors" />
             </InputGroup>
             <InputGroup>
                 <Label>Stock:</Label>
-                <Input name="stock" value={car.stock} onChange={handleChange} placeholder="Stock" />
+                <Input name="stock" value={vehicle.stock} onChange={handleChange} placeholder="Stock" />
             </InputGroup>
             <InputGroup>
                 <Label>Fuel Type:</Label>
-                <Input name="fuelType" value={car.fuelType} onChange={handleChange} placeholder="Fuel Type" />
+                <Input name="fuelType" value={vehicle.fuelType} onChange={handleChange} placeholder="Fuel Type" />
             </InputGroup>
             <InputGroup>
                 <Label>Condition:</Label>
-                <Input name="condition" value={car.condition} onChange={handleChange} placeholder="Condition" />
+                <Input name="condition" value={vehicle.condition} onChange={handleChange} placeholder="Condition" />
             </InputGroup>
-            <button type="submit">Add Car</button>
+            <button type="submit">{buttonText}</button>
         </Form>
     );
-    
+
 };
 
-export default AddCarForm;
+export default VehicleInfoForm;
