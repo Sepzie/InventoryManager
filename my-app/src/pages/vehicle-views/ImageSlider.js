@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 import './ImageSlider.css';
 
 // Slider responsible for the images of the vehicle on the details page
@@ -22,8 +22,8 @@ const ImageSlider = ({ slides }) => {
 
   return (
     <section className='slider'>
-      <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
-      <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+      <MdOutlineArrowBackIosNew className='left-arrow' onClick={prevSlide} />
+      <MdOutlineArrowForwardIos className='right-arrow' onClick={nextSlide} />
       {slides.map((slide, index) => {
         return (
           <div
