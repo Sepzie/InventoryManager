@@ -4,11 +4,19 @@
   .details {
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 2fr));
+    width: 100%;
+    margin: 100px auto;
+  }
+
+  .title-box {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 2fr));
     grid-gap: 25px;
     box-shadow: 0 0 10px #ccc;
     max-width: 1200px;
     width: 100%;
     margin: 100px auto;
+    grid-column: span 2
   }
   
   .box {

@@ -12,9 +12,7 @@ function VehicleList({ vehicles, setSelectedVehicle }) {
 function VehicleCard({ vehicle, setSelectedVehicle }) {
   return (
     <div className="vehicle-card">
-      <h3>{vehicle.make} {vehicle.model}</h3>
-      <p>Year: {vehicle.year}</p>
-      <p>Price: ${vehicle.price}</p>
+      <h3>{vehicle.title}</h3>
       <button onClick={() => setSelectedVehicle(vehicle)}>Select</button>
     </div>
   );
