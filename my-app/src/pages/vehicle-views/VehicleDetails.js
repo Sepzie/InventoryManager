@@ -6,7 +6,7 @@ import {TiArrowBack} from 'react-icons/ti';
 function VehicleDetails({ vehicle, unselectVehicle }) {
   return (
     <div className="details">
-      <div className="title-box ">
+      <div className="title-box">
           <TiArrowBack className='back-button' onClick={unselectVehicle}></TiArrowBack>
           <h2 className='vehicle-title'>{vehicle.title}</h2>
           <div className='vehicle-cost'>

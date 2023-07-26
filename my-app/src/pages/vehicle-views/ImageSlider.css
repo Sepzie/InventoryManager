@@ -52,29 +52,3 @@
     margin-bottom: 15px;
     grid-column: span 2
 }
-
-
-/* Media 610 px and less */
-@media (max-width: 610px) {
-    .right-arrow {
-        position: absolute;
-        top: 85%;
-        right: 20vw;
-        font-size: 2rem;
-        color: #000;
-        z-index: 10;
-        cursor: pointer;
-        user-select: none;
-    }
-
-    .left-arrow {
-        position: absolute;
-        top: 85%;
-        left: 20vw;
-        font-size: 2rem;
-        color: #000;
-        z-index: 10;
-        cursor: pointer;
-        user-select: none;
-    }
-}
