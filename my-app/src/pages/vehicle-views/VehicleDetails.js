@@ -16,7 +16,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
       </div>
       <div className="image-specs-box">
         <div className="image-slider">
-          <ImageSlider slides={vehicle.images} />
+          {vehicle.images && <ImageSlider slides={vehicle.images} />}
         </div>
         <div className="box">
           <p className="specs-title">Specifications</p>

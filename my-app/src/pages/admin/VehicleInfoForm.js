@@ -36,6 +36,7 @@ const AutoFillButton = styled.button`
 
 const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     const [vehicle, setVehicle] = useState({
+        title: '',
         bodyStyle: '',
         engine: '',
         transmission: '',
@@ -97,6 +98,10 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <h2>{pageTitle}</h2>
+            <InputGroup>
+                <Label>Title:</Label>
+                <Input name="title" value={vehicle.title} onChange={handleChange} placeholder="Title" />
+            </InputGroup>
             <InputGroup>
                 <Label>VIN:</Label>
                 <Input name="vin" value={vehicle.vin} onChange={handleChange} placeholder="VIN" />

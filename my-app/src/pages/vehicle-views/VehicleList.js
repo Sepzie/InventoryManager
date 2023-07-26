@@ -18,7 +18,6 @@ function VehicleList({ vehicles, setSelectedVehicle, admin, onEdit, onDelete }) 
 }
 
 function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
-  console.log(vehicle)
   return (
     <div className="vehicle-card">
       <h3>{vehicle.title}</h3>
