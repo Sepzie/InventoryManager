@@ -1,13 +1,13 @@
 import ImageSlider from './ImageSlider';
 import './VehicleDetails.css';
-import BackButton from '../../assets/back-arrow.png'
+import {TiArrowBack} from 'react-icons/ti';
 
 
 function VehicleDetails({ vehicle, unselectVehicle }) {
   return (
     <div className="details">
       <div className="title-box ">
-          <img src={BackButton} className='back-button' onClick={unselectVehicle}></img>
+          <TiArrowBack className='back-button' onClick={unselectVehicle}></TiArrowBack>
           <h2 className='vehicle-title'>{vehicle.title}</h2>
           <div className='vehicle-cost'>
             <h2>${vehicle.cost}</h2>
