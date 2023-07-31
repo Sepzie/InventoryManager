@@ -170,6 +170,10 @@
     border-radius: 5px;
   }
 
+  .request-info-button:hover{
+    background-color: rgba(0, 255, 255, 0.623);
+  }
+
   .input-details{
     padding: 10px 15px;
     font-size: 16px;

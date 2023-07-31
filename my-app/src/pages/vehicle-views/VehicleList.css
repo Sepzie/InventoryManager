@@ -15,20 +15,35 @@
   .vehicle-card p {
     margin-bottom: 8px;
   }
-  
-  .vehicle-card button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .select-vehicle-button {
+    grid-column: span 2;
+    width: 200px;
+    justify-self: center;
+    margin-bottom: 15px;
+    justify-items: center;
+    text-align: center;
+    background-color: rgba(0, 255, 255, 0.423);
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
   }
-  
-  .vehicle-card button:hover {
-    background-color: #45a049;
+
+
+  .select-vehicle-button:hover{
+    background-color: rgba(0, 255, 255, 0.623);
   }
-  
+
+  .image-card{
+    max-width: 200px;
+  }
+
+  .image-card-item{
+    max-width: 200px;
+  }
   
   
   .vehicle-list {
