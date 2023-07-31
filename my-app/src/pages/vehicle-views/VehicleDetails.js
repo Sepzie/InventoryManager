@@ -1,7 +1,6 @@
 import ImageSlider from './ImageSlider';
 import './VehicleDetails.css';
 import {TiArrowBack} from 'react-icons/ti';
-import {BackArrow} from '../../assets/back-arrow.png';
 
 
 function VehicleDetails({ vehicle, unselectVehicle }) {

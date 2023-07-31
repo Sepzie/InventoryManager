@@ -1,5 +1,5 @@
 import "./VehicleList.css";
-// import {NoImageAvaliable} from "../../assets/no-image-avaliable.png";
+import {NoImageAvaliable} from "../../assets/no-image-avaliable.png";
 
 function VehicleList({ vehicles, setSelectedVehicle, admin, onEdit, onDelete }) {
   return (
@@ -44,12 +44,11 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
 function ImageCard({vehicle}) {
 
   if (!Array.isArray(vehicle.images) || vehicle.images.length <= 0) {
-    // return(
-    //   <div className="image-card">
-    //     <img className="image-card-item" src={NoImageAvaliable} alt={vehicle.title} />
-    //   </div>
-    // )
-    return null;
+    return(
+      <div className="image-card">
+        <img className="image-card-item" src={NoImageAvaliable} alt={vehicle.title} />
+      </div>
+    )
   } 
 
   return (
