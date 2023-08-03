@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { db } from '../../firebase';
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import ImageUploader from './ImageUploader';
+
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -48,6 +51,7 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
         vin: '',
         fuelType: '',
         condition: '',
+        images: []
     });
 
     const pageTitle = editVehicle ? 'Edit Vehicle' : 'Add Vehicle';
@@ -146,7 +150,9 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
             <InputGroup>
                 <Label>Condition:</Label>
                 <Input name="condition" value={vehicle.condition} onChange={handleChange} placeholder="Condition" />
+
             </InputGroup>
+            <ImageUploader images={vehicle.images} setImages={(images) => setVehicle({ ...vehicle, images })} />
             <button type="submit">{buttonText}</button>
         </Form>
     );
