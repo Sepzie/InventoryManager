@@ -56,7 +56,7 @@ const InfoColumnRow = ({ title, value }) => {
         <p className="info-title">{title}:</p>
         <p className="info-value">{value}</p>
       </div>
-      <hr class="horizantal-line-specs"></hr>
+      <hr className="horizantal-line-specs"></hr>
     </div>
 
   );
