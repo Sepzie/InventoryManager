@@ -12,7 +12,7 @@ const ImageSlider = ({ slides }) => {
   if (!Array.isArray(slides) || slides.length <= 0) {
     return (
       <section>
-        <img src={NoImageAvaliable} className='image'></img>
+        <img src={NoImageAvaliable} className='image' alt="selected vehicle"></img>
       </section>
 
     )
@@ -43,7 +43,7 @@ const ImageSlider = ({ slides }) => {
             key={index}
           >
             {index === current && (
-              <img src={slide.downloadURL} alt='travel image' className='image' />
+              <img src={slide.downloadURL} alt='travel' className='image' />
             )}
           </div>
         );

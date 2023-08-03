@@ -78,7 +78,7 @@ function ImageCard({ vehicle }) {
 
   return (
     <div className="image-card">
-      <img className="image-card-item" src={image} />
+      <img className="image-card-item" src={image} alt="vehicle"/>
     </div>
 
   )

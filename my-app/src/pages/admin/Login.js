@@ -31,7 +31,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            {error && <p>{error}</p>}  // Display error message if login fails
+            {error && <p>{error}</p>}  {/* Display error message if login fails */}
             <button type="submit">Login</button>
         </form>
     );
