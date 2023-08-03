@@ -37,6 +37,12 @@ const AutoFillButton = styled.button`
   flex-basis: 100px;
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     const [vehicle, setVehicle] = useState({
         title: '',
@@ -69,6 +75,10 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
         onComplete(vehicle);
     };
 
+    const handleCancel = (e) => {
+        e.preventDefault();
+        onComplete(null);
+    };
     const handleChange = (e) => {
         setVehicle({ ...vehicle, [e.target.name]: e.target.value });
     };
@@ -153,7 +163,10 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
 
             </InputGroup>
             <ImageUploader images={vehicle.images} setImages={(images) => setVehicle({ ...vehicle, images })} />
-            <button type="submit">{buttonText}</button>
+            <ButtonGroup>
+                <button type="button" onClick={handleCancel}>Cancel</button>
+                <button type="submit">{buttonText}</button>
+            </ButtonGroup>
         </Form>
     );
 

@@ -53,8 +53,7 @@ const ImageUploader = ({ images, setImages }) => {
       setSelectedImageIndex(null);
     }
   };
-  
-  // Rest of the code remains the same
+   
   
 
   const handleMoveImage = (event, direction) => {

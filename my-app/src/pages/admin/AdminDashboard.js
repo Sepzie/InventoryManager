@@ -54,6 +54,10 @@ function AdminDashboard() {
     }
 
     const onComplete = async (vehicle) => {
+        if (!vehicle) {
+            setShowVehicleForm(false);
+            return;
+        }
         try {
             if (vehicle.id) {
                 // If vehicle has an ID, update the existing document
