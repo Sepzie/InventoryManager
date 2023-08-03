@@ -24,7 +24,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
           <InfoColumnRow title="Engine" value={vehicle.engine} />
           <InfoColumnRow title="Transmission" value={vehicle.transmission} />
           <InfoColumnRow title="Drivetrain" value={vehicle.drivetrain} />
-          <InfoColumnRow title="Exterior" value={vehicle.exterior} />
+          <InfoColumnRow title="Exterior Color" value={vehicle.exterior} />
           <InfoColumnRow title="Kilometers" value={vehicle.kilometers} />
           <InfoColumnRow title="Doors" value={vehicle.doors} />
           <InfoColumnRow title="Stock #" value={vehicle.stockNumber} />

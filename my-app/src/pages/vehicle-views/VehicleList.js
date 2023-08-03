@@ -42,7 +42,7 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
       <div className="info-box-card">
         <InfoColumnRow title="Body Style" value={vehicle.bodyStyle} />
         <InfoColumnRow title="Mileage" value={vehicle.kilometers} unit="km" />
-        <InfoColumnRow title="Color" value={vehicle.exteriorColor} />
+        <InfoColumnRow title="Color" value={vehicle.exterior} />
         <InfoColumnRow title="Stock #" value={vehicle.stock} />
         <InfoColumnRow title="VIN" value={vehicle.vin} />
       </div>

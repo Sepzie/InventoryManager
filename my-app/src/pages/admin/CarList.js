@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
-import { collection, doc, setDoc, getDocs } from "firebase/firestore"; 
+import { collection, getDocs } from "firebase/firestore"; 
 
 const carsRef = collection(db, "cars");
 

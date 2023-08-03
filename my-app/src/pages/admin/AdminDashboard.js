@@ -1,15 +1,12 @@
 import React from 'react';
 import VehicleInfoForm from './VehicleInfoForm';
-import CarList from './CarList';
 import Login from './Login';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import VehicleList from '../vehicle-views/VehicleList';
 import InventoryManager from '../inventory-manager/InventoryManager';
 import { db } from '../../firebase';
 import { collection, doc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { getStorage, ref, deleteObject } from 'firebase/storage';
 
 
 
