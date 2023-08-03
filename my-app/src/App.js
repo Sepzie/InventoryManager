@@ -1,6 +1,5 @@
 import './css/App.css'
 import { useState } from 'react';
-import logo from './logo.svg';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import InventoryManager from './pages/inventory-manager/InventoryManager';
 import AdminDashboard from './pages/admin/AdminDashboard';

@@ -1,5 +1,4 @@
 import "./InventoryManager.css"
-import mockVehicles from '../MockVehicles';
 import 'react-slideshow-image/dist/styles.css'
 import { useState, useEffect } from 'react';
 import VehicleList from "../vehicle-views/VehicleList";

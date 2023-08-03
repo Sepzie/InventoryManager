@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { db } from '../../firebase';
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
 import ImageUploader from './ImageUploader';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 
@@ -105,11 +103,12 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     const pageTitle = editVehicle ? 'Edit Vehicle' : 'Add Vehicle';
     const buttonText = editVehicle ? 'Update Vehicle' : 'Add Vehicle';
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (editVehicle) {
             setVehicle(editVehicle);
         }
-    }, []);
+    }, [editVehicle]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

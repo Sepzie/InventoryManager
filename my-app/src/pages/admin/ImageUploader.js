@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import styled from 'styled-components';
 
 const ImageUploaderContainer = styled.div`
