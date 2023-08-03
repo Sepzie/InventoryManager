@@ -3,17 +3,26 @@ import styled from 'styled-components';
 import { db } from '../../firebase';
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
 import ImageUploader from './ImageUploader';
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+
 
 
 const Form = styled.form`
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 500px;
   min-width: 300px;
   width: 90%;
-    margin: 0 auto;
+  margin: 0 auto;
 `;
+
 
 const InputGroup = styled.div`
   display: flex;
@@ -31,17 +40,48 @@ const Label = styled.label`
 const Input = styled.input`
   flex-grow: 1;
   margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 `;
 
 const AutoFillButton = styled.button`
   flex-basis: 100px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 10px;
 `;
+
+const Button = styled.button`
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
 
 const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     const [vehicle, setVehicle] = useState({
@@ -71,12 +111,53 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(onComplete);
-        onComplete(vehicle);
+
+        const userConfirmed = window.confirm("Are you sure you want to submit the changes?");
+        if (!userConfirmed) return; // If user cancels, stop execution
+
+        // Prepare promises for handling images
+        const storage = getStorage();
+        const imagesPromises = vehicle.images.map(async (image) => {
+            if (image.toBeDeleted) {
+                // Handle image deletion
+                try {
+                    const imageRef = ref(storage, image.storagePath);
+                    await deleteObject(imageRef).catch((error) => {
+                        console.error("Error deleting the image from cloud storage: ", error);
+                    });
+                } catch (error) {
+                    console.log('Error deleting image: ', error.message);
+                }
+                return null; // Return null for images to be deleted
+            }
+
+            if (image.file) {
+                // Handle image upload
+                const storageRef = ref(storage, 'images/' + image.file.name);
+                const snapshot = await uploadBytes(storageRef, image.file);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+                return { downloadURL, storagePath: 'images/' + image.file.name };
+            }
+
+            return image; // Already uploaded images remain unchanged
+        });
+
+        const finalImages = await Promise.all(imagesPromises);
+        const cleanedImages = finalImages.filter((image) => image !== null); // Remove null (deleted) images
+
+        // Final vehicle object with updated images
+        const finalVehicle = { ...vehicle, images: cleanedImages };
+
+        // Finalize vehicle changes (e.g., save to database)
+        onComplete(finalVehicle);
     };
 
     const handleCancel = (e) => {
         e.preventDefault();
+
+        const userConfirmed = window.confirm("Are you sure you want to cancel? All changes will be lost.");
+        if (!userConfirmed) return; // If user cancels, stop execution
+
         onComplete(null);
     };
     const handleChange = (e) => {
@@ -93,15 +174,15 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
                 console.log(result)
                 setVehicle(prevVehicle => ({
                     ...prevVehicle,
-                    bodyStyle: result.BodyClass,
-                    engine: result.EngineCylinders,
-                    transmission: result.TransmissionStyle,
-                    drivetrain: result.DriveType,
-                    // exterior: result.<appropriate field>, // Fill this out based on your API response
-                    doors: result.Doors,
-                    vin: result.VIN,
-                    fuelType: result.FuelTypePrimary,
-                    condition: result.VehicleType
+                    bodyStyle: result.BodyClass !== "" ? result.BodyClass : prevVehicle.bodyStyle,
+                    engine: result.EngineCylinders !== "" ? result.EngineCylinders : prevVehicle.engine,
+                    transmission: result.TransmissionStyle !== "" ? result.TransmissionStyle : prevVehicle.transmission,
+                    drivetrain: result.DriveType !== "" ? result.DriveType : prevVehicle.drivetrain,
+                    // exterior: result.<appropriate field> !== "" ? result.<appropriate field> : prevVehicle.exterior, // Fill this out based on your API response
+                    doors: result.Doors !== "" ? result.Doors : prevVehicle.doors,
+                    vin: result.VIN !== "" ? result.VIN : prevVehicle.vin,
+                    fuelType: result.FuelTypePrimary !== "" ? result.FuelTypePrimary : prevVehicle.fuelType,
+                    condition: result.VehicleType !== "" ? result.VehicleType : prevVehicle.condition
                 }));
             }
         } catch (error) {
@@ -164,8 +245,8 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
             </InputGroup>
             <ImageUploader images={vehicle.images} setImages={(images) => setVehicle({ ...vehicle, images })} />
             <ButtonGroup>
-                <button type="button" onClick={handleCancel}>Cancel</button>
-                <button type="submit">{buttonText}</button>
+                <Button type="button" onClick={handleCancel}>Cancel</Button>
+                <Button type="submit">{buttonText}</Button>
             </ButtonGroup>
         </Form>
     );

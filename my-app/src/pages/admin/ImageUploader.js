@@ -2,9 +2,21 @@ import React, { useState } from 'react';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import styled from 'styled-components';
 
+const ImageUploaderContainer = styled.div`
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+`;
+
+
 const ImageContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
 `;
 
 const Image = styled.img`
@@ -12,49 +24,62 @@ const Image = styled.img`
   height: 100px;
   margin: 5px;
   cursor: pointer;
-  border: ${(props) => (props.selected ? '2px solid blue' : 'none')};
+  border: ${(props) => (props.selected ? '2px solid blue' : '1px solid #ccc')};
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+`;
+
 
 const Button = styled.button`
   margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
+
 
 const ImageUploader = ({ images, setImages }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-  const handleAddImage = async (e) => {
+
+  const handleAddImage = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const storage = getStorage();
-      const storageRef = ref(storage, 'images/' + file.name);
-      const snapshot = await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
-      // Save both the download URL and the storage path
-      setImages([...images, { downloadURL, storagePath: 'images/' + file.name }]);
+      const objectURL = URL.createObjectURL(file);
+      setImages([...images, { file, downloadURL: objectURL, isNewlyAdded: true }]);
     }
+    // Reset the input value
+    e.target.value = null;
   };
-  
-  const handleRemoveImage = async (event) => {
+
+
+  const handleRemoveImage = (event) => {
     event.preventDefault();
     if (selectedImageIndex !== null) {
-      const { downloadURL, storagePath } = images[selectedImageIndex];
-      const storage = getStorage();
-      const imageRef = ref(storage, storagePath);
-  
-      // Deleting the image from cloud storage
-      await deleteObject(imageRef)
-        .catch((error) => {
-          console.error("Error deleting the image from cloud storage: ", error);
-        });
-  
-      // Updating the component's state
-      const newImages = [...images];
-      newImages.splice(selectedImageIndex, 1);
-      setImages(newImages);
+      const updatedImages = [...images];
+      if (updatedImages[selectedImageIndex].isNewlyAdded) {
+        // Remove newly added image from array
+        updatedImages.splice(selectedImageIndex, 1);
+      } else {
+        // Mark other images for deletion
+        updatedImages[selectedImageIndex].toBeDeleted = true;
+      }
+      setImages(updatedImages);
       setSelectedImageIndex(null);
     }
   };
-   
-  
+
 
   const handleMoveImage = (event, direction) => {
     event.preventDefault()
@@ -69,25 +94,33 @@ const ImageUploader = ({ images, setImages }) => {
     }
   };
 
+  console.log('images: ', images)
+
+
   return (
-    <div>
+    <ImageUploaderContainer>
       <ImageContainer>
         {images && images.map((image, index) => (
-          <Image
-            key={index}
-            src={image.downloadURL}
-            alt="Vehicle"
-            selected={index === selectedImageIndex}
-            onClick={() => setSelectedImageIndex(index)}
-          />
+          !image.toBeDeleted && (
+            <Image
+              key={index}
+              src={image.downloadURL}
+              alt="Vehicle"
+              selected={index === selectedImageIndex}
+              onClick={() => setSelectedImageIndex(index)}
+            />
+          )
         ))}
       </ImageContainer>
-      <input type="file" onChange={handleAddImage} />
-      <Button onClick={handleRemoveImage}>Remove</Button>
-      <Button onClick={(event) => handleMoveImage(event, 'left')}>Left</Button>
-      <Button onClick={(event) => handleMoveImage(event, 'right')}>Right</Button>
-    </div>
+      <input type="file" accept="image/*" onChange={handleAddImage} />
+      <ButtonContainer>
+        <Button onClick={handleRemoveImage}>Remove</Button>
+        <Button onClick={(event) => handleMoveImage(event, 'left')}>Left</Button>
+        <Button onClick={(event) => handleMoveImage(event, 'right')}>Right</Button>
+      </ButtonContainer>
+    </ImageUploaderContainer>
   );
+
 };
 
 export default ImageUploader;
