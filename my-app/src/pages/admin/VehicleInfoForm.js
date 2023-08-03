@@ -86,6 +86,7 @@ const Button = styled.button`
 const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     const [vehicle, setVehicle] = useState({
         title: '',
+        price: '',
         bodyStyle: '',
         engine: '',
         transmission: '',
@@ -97,6 +98,7 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
         vin: '',
         fuelType: '',
         condition: '',
+        description: '',
         images: []
     });
 
@@ -198,6 +200,10 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
                 <Input name="title" value={vehicle.title} onChange={handleChange} placeholder="Title" />
             </InputGroup>
             <InputGroup>
+                <Label>Price:</Label>
+                <Input name="price" value={vehicle.price} onChange={handleChange} placeholder="Price" />
+            </InputGroup>
+            <InputGroup>
                 <Label>VIN:</Label>
                 <Input name="vin" value={vehicle.vin} onChange={handleChange} placeholder="VIN" />
                 <AutoFillButton type="button" onClick={handleAutoFill}>Auto-fill</AutoFillButton>
@@ -241,7 +247,10 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
             <InputGroup>
                 <Label>Condition:</Label>
                 <Input name="condition" value={vehicle.condition} onChange={handleChange} placeholder="Condition" />
-
+            </InputGroup>
+            <InputGroup>
+                <Label>Description:</Label>
+                <Input name="description" value={vehicle.description} onChange={handleChange} placeholder="Description" />
             </InputGroup>
             <ImageUploader images={vehicle.images} setImages={(images) => setVehicle({ ...vehicle, images })} />
             <ButtonGroup>

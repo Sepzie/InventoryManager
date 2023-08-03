@@ -20,7 +20,7 @@ function VehicleList({ vehicles, setSelectedVehicle, admin, onEdit, onDelete }) 
   );
 }
 
-function InfoColumnRow({ title, value, unit="" }){
+function InfoColumnRow({ title, value, unit = "" }) {
   return (
     <div>
       <div className="info-row">
@@ -40,7 +40,7 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
       <ImageCard vehicle={vehicle} />
       <h3 className="card-title">{vehicle.title || "Car Title Not Found"}</h3>
       <div className="info-box-card">
-        <InfoColumnRow title="Body Style" value={vehicle.bodyStyle}  />
+        <InfoColumnRow title="Body Style" value={vehicle.bodyStyle} />
         <InfoColumnRow title="Mileage" value={vehicle.kilometers} unit="km" />
         <InfoColumnRow title="Color" value={vehicle.exteriorColor} />
         <InfoColumnRow title="Stock #" value={vehicle.stock} />
@@ -52,23 +52,30 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
       {/* Admin Version */}
       {admin && (
         <div>
-          <button onClick={() => onEdit(vehicle)}>Edit</button>
-          <button onClick={() => onDelete(vehicle)}>Delete</button>
+          <button onClick={(event) => {
+            event.stopPropagation();
+            onEdit(vehicle)
+          }}>Edit</button>
+          <button onClick={(event) => {
+            event.stopPropagation();
+            onDelete(vehicle)
+          }}>Delete</button>
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 
-function ImageCard({vehicle}) {
+function ImageCard({ vehicle }) {
 
   var image = null;
 
   if (!Array.isArray(vehicle.images) || vehicle.images.length <= 0)
     image = NoImageAvaliable;
   else
-    image = vehicle.images[0];
-  
+    image = vehicle.images[0].downloadURL;
+
   return (
     <div className="image-card">
       <img className="image-card-item" src={image} />
