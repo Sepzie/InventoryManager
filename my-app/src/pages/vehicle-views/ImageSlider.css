@@ -9,17 +9,16 @@
 }
 
 .image {
-    max-width: 350px;
-    height: 100%;
+    height: 300px;
     border-radius: 10px;
 }
 
 .right-arrow {
     position: absolute;
     top: 90%;
-    right: 80px;
+    right: 0px;
     font-size: 2rem;
-    color: gray;
+    color: white;
     z-index: 10;
     cursor: pointer;
     user-select: none;
@@ -28,9 +27,9 @@
 .left-arrow {
     position: absolute;
     top: 90%;
-    left: 80px;
+    left: 0px;
     font-size: 2rem;
-    color: gray;
+    color: white;
     z-index: 10;
     cursor: pointer;
     user-select: none;
@@ -52,30 +51,4 @@
     justify-self: center;
     margin-bottom: 15px;
     grid-column: span 2
-}
-
-
-/* Media 610 px and less */
-@media (max-width: 610px) {
-    .right-arrow {
-        position: absolute;
-        top: 85%;
-        right: 20vw;
-        font-size: 2rem;
-        color: #000;
-        z-index: 10;
-        cursor: pointer;
-        user-select: none;
-    }
-
-    .left-arrow {
-        position: absolute;
-        top: 85%;
-        left: 20vw;
-        font-size: 2rem;
-        color: #000;
-        z-index: 10;
-        cursor: pointer;
-        user-select: none;
-    }
 }

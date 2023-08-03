@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 import './ImageSlider.css';
+import NoImageAvaliable from "../../assets/no-image-avaliable.png";
 
 // Slider responsible for the images of the vehicle on the details page
 
 const ImageSlider = ({ slides }) => {
+
   const [current, setCurrent] = useState(0);
+
+  if (!Array.isArray(slides) || slides.length <= 0) {
+    return (
+      <section>
+        <img src={NoImageAvaliable} className='image'></img>
+      </section>
+
+    )
+  }
+
+
+
   const length = slides.length;
+
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -16,9 +31,6 @@ const ImageSlider = ({ slides }) => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  if (!Array.isArray(slides) || slides.length <= 0) {
-    return null;
-  }
 
   return (
     <section className='slider'>
