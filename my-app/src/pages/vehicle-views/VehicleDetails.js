@@ -8,15 +8,15 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
     <div className="details">
       <div className="title-box">
           <TiArrowBack className='back-button' onClick={unselectVehicle}></TiArrowBack>
-          <h2 className='vehicle-title'>{vehicle.title}</h2>
+          <h2 className='vehicle-title'>{vehicle.title || "Untitled"}</h2>
           <div className='vehicle-cost'>
-            <h2>${vehicle.price}</h2>
+            <h2>${vehicle.price || "0"} </h2>
             <p>+ Taxes and Licensing</p>
-          </div> 
+          </div>
       </div>
       <div className="image-specs-box">
         <div className="image-slider">
-          {vehicle.images && <ImageSlider slides={vehicle.images} />}
+          {<ImageSlider slides={vehicle.images} />}
         </div>
         <div className="box">
           <p className="specs-title">Specifications</p>
@@ -36,7 +36,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
 
       <div className="details-description-box">
         <h3>Details</h3>
-        <p>{vehicle.description}</p>
+        <p>{vehicle.description || "No Description"}</p>
       </div>
 
       <form className="request-info-box">
@@ -54,7 +54,7 @@ const InfoColumnRow = ({ title, value }) => {
     <div>
       <div className="info-row">
         <p className="info-title">{title}:</p>
-        <p className="info-value">{value}</p>
+        <p className="info-value">{value || "N/A"}</p>
       </div>
       <hr class="horizantal-line-specs"></hr>
     </div>

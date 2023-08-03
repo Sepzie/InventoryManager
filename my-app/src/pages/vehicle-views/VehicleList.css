@@ -4,23 +4,18 @@
     border-radius: 4px;
     padding: 10px;
     margin: 10px;
-    max-width: 200px;
+    width: 300px;
     background-color: #f9f9f9;
   }
   
-  .vehicle-card h3 {
-    margin-top: 0;
-  }
-  
-  .vehicle-card p {
-    margin-bottom: 8px;
+  .card-title{
+    text-align: center;
   }
 
   .select-vehicle-button {
     grid-column: span 2;
     width: 200px;
-    justify-self: center;
-    margin-bottom: 15px;
+    margin-left: 15%;
     justify-items: center;
     text-align: center;
     background-color: rgba(0, 255, 255, 0.423);
@@ -37,18 +32,54 @@
     background-color: rgba(0, 255, 255, 0.623);
   }
 
-  .image-card{
-    max-width: 200px;
+  .card-price{
+    text-align: right;
+    margin-right: 20px;
   }
 
-  .image-card-item{
-    max-width: 200px;
-  }
+.image-card {
+  height: 200px;
+  overflow: hidden;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+.image-card-item {
+  max-width: 200px;
+  max-height: 180px;
+}
+
   
   
   .vehicle-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  /* Information section */
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+  }
+
+  .info-value{
+    text-align: right;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-right: 20px;
+  }
+
+  .info-title{
+    text-align: left;
+    font-weight: 100;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
+    min-width: 50px;
   }
   
