@@ -9,6 +9,8 @@ import VehicleList from '../vehicle-views/VehicleList';
 import InventoryManager from '../inventory-manager/InventoryManager';
 import { db } from '../../firebase';
 import { collection, doc, setDoc, addDoc, deleteDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+
 
 function AdminDashboard() {
     const [user, setUser] = useState(null);
@@ -41,18 +43,29 @@ function AdminDashboard() {
     }
 
     const onDelete = async (vehicle) => {
-        const confirmDelete = window.confirm(`Are you sure you want to delete ${vehicle.name}?`);
+        const confirmDelete = window.confirm(`Are you sure you want to delete ${vehicle.title}?`);
         if (confirmDelete) {
             try {
+                // Deleting images associated with the vehicle
+                const storage = getStorage();
+                if (vehicle.images) {
+                    for (const image of vehicle.images) {
+                        const imageRef = ref(storage, image.storagePath);
+                        await deleteObject(imageRef).catch((error) => {
+                            console.error("Error deleting the image from cloud storage: ", error);
+                        });
+                    }
+                }
+    
+                // Deleting the vehicle document
                 await deleteDoc(doc(db, 'vehicles', vehicle.id));
-                alert('Vehicle deleted!');
+                alert('Vehicle and associated images deleted!');
                 setInventoryKey(prevKey => prevKey + 1);
             } catch (error) {
                 alert('Failed to delete vehicle: ', error.message);
             }
         }
     }
-
     const onComplete = async (vehicle) => {
         if (!vehicle) {
             setShowVehicleForm(false);
