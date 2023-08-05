@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 const RequestInfoForm = () => {
   const [firstName, setFirstName] = useState('');
@@ -37,8 +38,6 @@ const RequestInfoForm = () => {
     if (firstName && lastName && phoneNumber && email) {
       // Send an email to "simarv07@gmail.com" with the user's information
       const emailData = {
-        to: 'simarv07@gmail.com',
-        subject: 'Request for more information',
         body: `First Name: ${firstName}\nLast Name: ${lastName}\nPhone Number: ${phoneNumber}\nEmail: ${email}`,
       };
 
@@ -46,6 +45,27 @@ const RequestInfoForm = () => {
       // For demonstration purposes, let's just log the email data here.
       console.log(emailData);
       setIsEmailSent(true);
+
+      emailjs.send(
+        'service_ogn2eke', // Replace with your EmailJS service ID
+        'template_635hbx3', // Replace with your EmailJS template ID
+        emailData,
+        'Ji8VGigmnM1N_jF9b' // Replace with your EmailJS user ID
+      )
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        setIsEmailSent(true);
+  
+        // Reset form fields after submitting
+        setFirstName('');
+        setLastName('');
+        setPhoneNumber('');
+        setEmail('');
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        // Handle the error here if the email fails to send
+      });
 
       // Reset form fields after submitting
       setFirstName('');
