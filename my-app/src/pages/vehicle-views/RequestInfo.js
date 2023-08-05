@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 
-const RequestInfoForm = () => {
+const RequestInfoForm = ({vehicleName}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -38,7 +38,7 @@ const RequestInfoForm = () => {
     if (firstName && lastName && phoneNumber && email) {
       // Send an email to "simarv07@gmail.com" with the user's information
       const emailData = {
-        body: `First Name: ${firstName}\nLast Name: ${lastName}\nPhone Number: ${phoneNumber}\nEmail: ${email}`,
+        body: `Vehicle Title: ${vehicleName.toString()}\nFirst Name: ${firstName}\nLast Name: ${lastName}\nPhone Number: ${phoneNumber}\nEmail: ${email}`,
       };
 
       // You can use an API or a backend service to send the email.
@@ -56,11 +56,6 @@ const RequestInfoForm = () => {
         console.log('Email sent successfully:', response);
         setIsEmailSent(true);
   
-        // Reset form fields after submitting
-        setFirstName('');
-        setLastName('');
-        setPhoneNumber('');
-        setEmail('');
       })
       .catch((error) => {
         console.error('Failed to send email:', error);

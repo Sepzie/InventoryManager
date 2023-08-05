@@ -40,7 +40,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
         <p>{vehicle.description || "No Description"}</p>
       </div>
 
-      <RequestInfoForm></RequestInfoForm>
+      <RequestInfoForm vehicleName={vehicle.title}></RequestInfoForm>
     </div>
   );
 }
