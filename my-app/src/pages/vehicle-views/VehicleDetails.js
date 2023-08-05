@@ -1,5 +1,6 @@
 import ImageSlider from './ImageSlider';
 import './VehicleDetails.css';
+import RequestInfoForm from './RequestInfo';
 import {TiArrowBack} from 'react-icons/ti';
 
 
@@ -39,13 +40,7 @@ function VehicleDetails({ vehicle, unselectVehicle }) {
         <p>{vehicle.description || "No Description"}</p>
       </div>
 
-      <form className="request-info-box">
-        <RequestInfoSection title="First Name" />
-        <RequestInfoSection title="Last Name" />
-        <RequestInfoSection title="Phone Number" />
-        <RequestInfoSection title="Email" />
-        <button className="request-info-button">Request More Info</button>
-      </form>
+      <RequestInfoForm></RequestInfoForm>
     </div>
   );
 }
@@ -60,16 +55,6 @@ const InfoColumnRow = ({ title, value }) => {
     </div>
 
   );
-};
-
-const RequestInfoSection = ({ title}) => {
-  return(
-    <div className="request-info-section">
-      <p>{title}</p>
-      <input  type="text" className="input-details"/>
-  </div>
-  );
-
 };
 
 
