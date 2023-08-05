@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "emailjs-com": "^3.2.0",
     "firebase": "^10.1.0",
     "mdb-react-ui-kit": "^6.1.0",
     "react": "^18.2.0",
@@ -44,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.22.5",
-    "@babel/plugin-proposal-private-property-in-object": "^7.16.7"
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@babel/preset-react": "^7.22.5"
   }
 }
