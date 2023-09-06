@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 import './ImageSlider.css';
 import NoImageAvaliable from "../../assets/no-image-avaliable.png";
+import SoldOverlay from "../../assets/sold.png";
 
 // Slider responsible for the images of the vehicle on the details page
 
-const ImageSlider = ({ slides }) => {
+const ImageSlider = ({ slides, isSold }) => {
 
   const [current, setCurrent] = useState(0);
 
@@ -43,7 +44,10 @@ const ImageSlider = ({ slides }) => {
             key={index}
           >
             {index === current && (
-              <img src={slide.downloadURL} alt='travel' className='image' />
+              <>
+                <img src={slide.downloadURL} alt='travel' className='image' />
+                {isSold && <img src={SoldOverlay} className="sold-overlay" alt="Sold" />}
+              </>
             )}
           </div>
         );

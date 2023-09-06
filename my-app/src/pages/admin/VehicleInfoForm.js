@@ -97,7 +97,8 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
         fuelType: '',
         condition: '',
         description: '',
-        images: []
+        images: [],
+        isSold: false,
     });
 
     const pageTitle = editVehicle ? 'Edit Vehicle' : 'Add Vehicle';
@@ -194,6 +195,16 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
     return (
         <Form onSubmit={handleSubmit}>
             <h2>{pageTitle}</h2>
+            <InputGroup>
+                <Label htmlFor="isSold">Is Sold:</Label>
+                <Input
+                    type="checkbox"
+                    id="isSold"
+                    name="isSold"
+                    checked={vehicle.isSold}
+                    onChange={(e) => setVehicle({ ...vehicle, isSold: e.target.checked })}
+                />
+            </InputGroup>
             <InputGroup>
                 <Label>Title:</Label>
                 <Input name="title" value={vehicle.title} onChange={handleChange} placeholder="Title" />

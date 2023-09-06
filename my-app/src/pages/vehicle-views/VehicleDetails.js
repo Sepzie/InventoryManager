@@ -1,35 +1,35 @@
 import ImageSlider from './ImageSlider';
 import './VehicleDetails.css';
-import {TiArrowBack} from 'react-icons/ti';
+import { TiArrowBack } from 'react-icons/ti';
 
 
 function VehicleDetails({ vehicle, unselectVehicle }) {
   return (
     <div className="details">
       <div className="title-box">
-          <TiArrowBack className='back-button' onClick={unselectVehicle}></TiArrowBack>
-          <h2 className='vehicle-title'>{vehicle.title || "Untitled"}</h2>
-          <div className='vehicle-cost'>
-            <h2>${vehicle.price || "0"} </h2>
-            <p>+ Taxes and Licensing</p>
-          </div>
+        <TiArrowBack className='back-button' onClick={unselectVehicle}></TiArrowBack>
+        <h2 className='vehicle-title'>{vehicle.title || "Untitled"}</h2>
+        <div className='vehicle-cost'>
+          <h2>${vehicle.price || "0"} </h2>
+          <p>+ Taxes and Licensing</p>
+        </div>
       </div>
       <div className="image-specs-box">
         <div className="image-slider">
-          {<ImageSlider slides={vehicle.images} />}
+          {<ImageSlider slides={vehicle.images} isSold={vehicle.isSold} />}
         </div>
         <div className="box">
           <p className="specs-title">Specifications</p>
           <div className="info-column">
-          <InfoColumnRow title="Engine" value={vehicle.engine} />
-          <InfoColumnRow title="Transmission" value={vehicle.transmission} />
-          <InfoColumnRow title="Drivetrain" value={vehicle.drivetrain} />
-          <InfoColumnRow title="Exterior Color" value={vehicle.exterior} />
-          <InfoColumnRow title="Kilometers" value={vehicle.kilometers} />
-          <InfoColumnRow title="Doors" value={vehicle.doors} />
-          <InfoColumnRow title="Stock #" value={vehicle.stockNumber} />
-          <InfoColumnRow title="VIN #" value={vehicle.vin} />
-          <InfoColumnRow title="Condition" value={vehicle.condition} />
+            <InfoColumnRow title="Engine" value={vehicle.engine} />
+            <InfoColumnRow title="Transmission" value={vehicle.transmission} />
+            <InfoColumnRow title="Drivetrain" value={vehicle.drivetrain} />
+            <InfoColumnRow title="Exterior Color" value={vehicle.exterior} />
+            <InfoColumnRow title="Kilometers" value={vehicle.kilometers} />
+            <InfoColumnRow title="Doors" value={vehicle.doors} />
+            <InfoColumnRow title="Stock #" value={vehicle.stockNumber} />
+            <InfoColumnRow title="VIN #" value={vehicle.vin} />
+            <InfoColumnRow title="Condition" value={vehicle.condition} />
           </div>
         </div>
       </div>
@@ -62,12 +62,12 @@ const InfoColumnRow = ({ title, value }) => {
   );
 };
 
-const RequestInfoSection = ({ title}) => {
-  return(
+const RequestInfoSection = ({ title }) => {
+  return (
     <div className="request-info-section">
       <p>{title}</p>
-      <input  type="text" className="input-details"/>
-  </div>
+      <input type="text" className="input-details" />
+    </div>
   );
 
 };

@@ -1,5 +1,7 @@
 import "./VehicleList.css";
-import NoImageAvaliable from "../../assets/no-image-avaliable.png";
+import NoImageAvailable from "../../assets/no-image-avaliable.png";
+import SoldOverlay from "../../assets/sold.png";
+import React, { useState, useEffect } from 'react';
 
 function VehicleList({ vehicles, setSelectedVehicle, admin, onEdit, onDelete }) {
   return (
@@ -47,41 +49,41 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
         <InfoColumnRow title="VIN" value={vehicle.vin} />
       </div>
       <h2 className="card-price">${vehicle.price || "0"}</h2>
-
-
       {/* Admin Version */}
       {admin && (
         <div>
+
           <button onClick={(event) => {
             event.stopPropagation();
-            onEdit(vehicle)
+            onEdit(vehicle);
           }}>Edit</button>
           <button onClick={(event) => {
             event.stopPropagation();
-            onDelete(vehicle)
+            onDelete(vehicle);
           }}>Delete</button>
         </div>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 }
 
 function ImageCard({ vehicle }) {
-
-  var image = null;
-
-  if (!Array.isArray(vehicle.images) || vehicle.images.length <= 0)
-    image = NoImageAvaliable;
-  else
+  let image;
+  console.log(vehicle.isSold)
+  if (!Array.isArray(vehicle.images) || vehicle.images.length <= 0) {
+    image = NoImageAvailable;
+  } else {
     image = vehicle.images[0].downloadURL;
+  }
 
   return (
     <div className="image-card">
-      <img className="image-card-item" src={image} alt="vehicle"/>
+      <img className="image-card-item" src={image} alt="vehicle" />
+      {vehicle.isSold && (
+        <img className="image-card-overlay" src={SoldOverlay} alt="sold overlay" />
+      )}
     </div>
-
-  )
+  );
 }
 
 

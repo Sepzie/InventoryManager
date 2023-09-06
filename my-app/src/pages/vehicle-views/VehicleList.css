@@ -1,46 +1,46 @@
-
 .vehicle-card {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 10px;
-    width: 300px;
-    background-color: #f9f9f9;
-  }
-  
-  .card-title{
-    text-align: center;
-  }
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  background-color: #d6f8fe;
+}
 
-  .select-vehicle-button {
-    grid-column: span 2;
-    width: 200px;
-    margin-left: 15%;
-    justify-items: center;
-    text-align: center;
-    background-color: rgba(0, 255, 255, 0.423);
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-  }
+.card-title {
+  text-align: center;
+}
+
+.select-vehicle-button {
+  grid-column: span 2;
+  width: 200px;
+  margin-left: 15%;
+  justify-items: center;
+  text-align: center;
+  background-color: rgba(0, 255, 255, 0.423);
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  border: 0px;
+  padding: 10px;
+  border-radius: 5px;
+}
 
 
-  .select-vehicle-button:hover{
-    background-color: rgba(0, 255, 255, 0.623);
-  }
+.select-vehicle-button:hover {
+  background-color: rgba(0, 255, 255, 0.623);
+}
 
-  .card-price{
-    text-align: right;
-    margin-right: 20px;
-  }
+.card-price {
+  text-align: right;
+  margin-right: 20px;
+}
 
 .image-card {
+  position: relative;
   height: 200px;
   overflow: hidden;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -50,36 +50,47 @@
   max-height: 180px;
 }
 
-  
-  
-  .vehicle-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 
-  /* Information section */
 
-  .info-row {
-    display: flex;
-    justify-content: space-between;
-    height: fit-content;
-  }
+.vehicle-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  .info-value{
-    text-align: right;
-    font-weight: 100;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    margin-right: 20px;
-  }
+/* Information section */
 
-  .info-title{
-    text-align: left;
-    font-weight: 100;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    margin-left: 20px;
-    min-width: 50px;
-  }
-  
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.info-value {
+  text-align: right;
+  font-weight: 100;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.info-title {
+  text-align: left;
+  font-weight: 100;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-left: 20px;
+  min-width: 50px;
+}
+
+.image-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  height: 70%;
+  margin: auto;
+  object-fit: cover;
+}
