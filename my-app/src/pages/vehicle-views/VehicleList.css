@@ -38,7 +38,7 @@
 
 .image-card {
   position: relative;
-  height: 200px;
+
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -46,8 +46,8 @@
 }
 
 .image-card-item {
-  max-width: 200px;
-  max-height: 180px;
+  max-width: 300px;
+  max-height: 250px;
 }
 
 
@@ -89,8 +89,20 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: 70%;
-  height: 70%;
+  width: 300px;
   margin: auto;
+  opacity: 80%;
   object-fit: cover;
+}
+
+/* Media 730 px and less for Mobile */
+
+@media (max-width: 730px) {
+
+  .image-card-item {
+    max-width: 250px;
+  }
+  .image-card-overlay {
+    max-width: 250px;
+  }
 }

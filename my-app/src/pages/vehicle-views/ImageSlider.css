@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border:#000
+    border: #000
 }
 
 .image {
@@ -63,5 +63,14 @@
     height: 85%;
     margin: auto;
     opacity: 0.8;
-  }
-  
+}
+
+
+/* Media 730 px and less for Mobile */
+
+@media (max-width: 730px) {
+
+    .image {
+        height: 200px;
+    }
+}
