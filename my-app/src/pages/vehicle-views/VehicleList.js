@@ -1,7 +1,6 @@
 import "./VehicleList.css";
 import NoImageAvailable from "../../assets/no-image-avaliable.png";
 import SoldOverlay from "../../assets/sold.png";
-import React, { useState, useEffect } from 'react';
 
 function VehicleList({ vehicles, setSelectedVehicle, admin, onEdit, onDelete }) {
   return (
