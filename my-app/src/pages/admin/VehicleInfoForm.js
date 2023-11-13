@@ -173,7 +173,6 @@ const VehicleInfoForm = ({ editVehicle, onComplete }) => {
 
             if (data.Results && data.Results.length > 0) {
                 const result = data.Results[0];
-                console.log(result)
                 setVehicle(prevVehicle => ({
                     ...prevVehicle,
                     bodyStyle: result.BodyClass !== "" ? result.BodyClass : prevVehicle.bodyStyle,

@@ -53,14 +53,17 @@ const ImageUploader = ({ images, setImages }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const handleAddImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const objectURL = URL.createObjectURL(file);
-      setImages([...images, { file, downloadURL: objectURL, isNewlyAdded: true }]);
+    const files = Array.from(e.target.files); // Convert FileList to Array
+    if (files.length) {
+        const newImages = files.map(file => {
+            const objectURL = URL.createObjectURL(file);
+            return { file, downloadURL: objectURL, isNewlyAdded: true };
+        });
+        setImages([...images, ...newImages]); // Append new images to existing ones
     }
     // Reset the input value
     e.target.value = null;
-  };
+};
 
 
   const handleRemoveImage = (event) => {
@@ -93,7 +96,6 @@ const ImageUploader = ({ images, setImages }) => {
     }
   };
 
-  console.log('images: ', images)
 
 
   return (
@@ -111,7 +113,7 @@ const ImageUploader = ({ images, setImages }) => {
           )
         ))}
       </ImageContainer>
-      <input type="file" accept="image/*" onChange={handleAddImage} />
+      <input type="file" accept="image/*" onChange={handleAddImage} multiple/>
       <ButtonContainer>
         <Button onClick={handleRemoveImage}>Remove</Button>
         <Button onClick={(event) => handleMoveImage(event, 'left')}>Left</Button>

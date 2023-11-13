@@ -68,7 +68,6 @@ function VehicleCard({ vehicle, setSelectedVehicle, admin, onEdit, onDelete }) {
 
 function ImageCard({ vehicle }) {
   let image;
-  console.log(vehicle.isSold)
   if (!Array.isArray(vehicle.images) || vehicle.images.length <= 0) {
     image = NoImageAvailable;
   } else {
